@@ -34,12 +34,13 @@ const server = http.createServer((req,res)=>{
         req.on('end',() =>{
             const parseBody = Buffer.concat(body).toString();
             console.log(parseBody);
+            //fs.writeFileSync('myfile.txt','dummy text');
+            //res.statusCode =302;
+           // res.setHeader('Location','/test');
+            //return res.end();
 
         });
-        //fs.writeFileSync('myfile.txt','dummy text');
-        //res.statusCode =302;
-        //res.setHeader('Location','/test');
-        return res.end();
+        
     }
 
     res.setHeader('Content-Type','text/html');
