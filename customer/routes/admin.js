@@ -4,9 +4,20 @@ const custompath = process.env.INIT_CWD;
 
 const routes = express.Router();
 
-routes.post('/addproduct', (req,res,next) => {
+const products = [];
+
+routes.get('/addproduct', (req,res,next) => {
     console.log(req.body);
     //res.send('<h1>in add product route</h1>');
+    res.sendFile(path.join(custompath,'views','addproduct.html'));
+});
+
+routes.post('/addproduct', (req,res,next) => {
+    console.log(req.body.name);
+    //res.send('<h1>in add product route</h1>');
+    
+    products.push({'name': req.body.name});
+    console.log('products',products);
     res.sendFile(path.join(custompath,'views','addproduct.html'));
 });
 
@@ -18,4 +29,7 @@ routes.use('/test', (req, res, next)=> {
 });
 
 
-module.exports = routes;
+//module.exports = routes;
+
+exports.routes = routes;
+exports.products = products;
